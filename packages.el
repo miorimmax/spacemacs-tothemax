@@ -10,13 +10,23 @@
 ;;; License: GPLv3
 
 (defconst tothemax-packages
-  '(flycheck-clj-kondo))
+  '(flycheck-clj-kondo
+    flycheck-joker))
 
 (defun tothemax/init-flycheck-clj-kondo ()
   (use-package flycheck-clj-kondo))
 
+(defun tothemax/init-flycheck-joker ()
+  (use-package flycheck-joker))
+
 (defun tothemax/post-init-clojure-mode ()
   (require 'flycheck-clj-kondo)
+  (require 'flycheck-joker)
+
+  (dolist (checkers '((clj-kondo-clj . clojure-joker)
+                      (clj-kondo-cljs . clojurescript-joker)
+                      (clj-kondo-cljc . clojure-joker)))
+    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
 
   (setq clojure-toplevel-inside-comment-form t)
 
