@@ -10,24 +10,13 @@
 ;;; License: GPLv3
 
 (defconst tothemax-packages
-  '(flycheck-clj-kondo
-    flycheck-joker))
+  '(flycheck-clojure))
 
-(defun tothemax/init-flycheck-clj-kondo ()
-  (use-package flycheck-clj-kondo))
-
-(defun tothemax/init-flycheck-joker ()
-  (use-package flycheck-joker))
+(defun tothemax/init-flycheck-clojure ()
+  (use-package flycheck-clojure
+    :after 'flycheck))
 
 (defun tothemax/post-init-clojure-mode ()
-  (require 'flycheck-clj-kondo)
-  (require 'flycheck-joker)
-
-  (dolist (checkers '((clj-kondo-clj . clojure-joker)
-                      (clj-kondo-cljs . clojurescript-joker)
-                      (clj-kondo-cljc . clojure-joker)))
-    (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
-
   (setq clojure-toplevel-inside-comment-form t)
 
   (add-hook 'clojure-mode-hook
@@ -84,6 +73,10 @@
                 (with-scopes 1)))))
 
 (defun tothemax/post-init-cider ()
+  (require 'flycheck-clojure)
+
+  (eval-after-load 'flycheck '(flycheck-clojure-setup))
+
   (setq cider-prompt-for-symbol nil
         cider-save-file-on-load t
         cider-font-lock-dynamically t
