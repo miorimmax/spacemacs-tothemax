@@ -33,3 +33,18 @@
 
 (add-hook 'text-mode-hook 'set-line-spacing)
 (add-hook 'prog-mode-hook 'set-line-spacing)
+
+(setq clojure-toplevel-inside-comment-form t)
+
+(setq cider-prompt-for-symbol nil
+      cider-save-file-on-load t
+      cider-font-lock-dynamically t
+      cider-eldoc-display-context-dependent-info t
+      cider-eldoc-display-for-symbol-at-point #'truncate-sym-name-if-fit
+      cider-repl-pop-to-buffer-on-connect nil
+      cider-repl-use-clojure-font-lock t
+      cider-overlays-use-font-lock t
+      cider-jdk-src-paths '("~/dev/src/java-8" "~/dev/src/clojure-1.9" "~/dev/src/clojure-1.10")
+      cider-print-fn #'zprint
+      cider-stacktrace-fill-column t
+      cider-stacktrace-default-filters '(project))
