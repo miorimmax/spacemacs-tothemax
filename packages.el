@@ -10,11 +10,7 @@
 ;;; License: GPLv3
 
 (defconst tothemax-packages
-  '(flycheck-clojure))
-
-(defun tothemax/init-flycheck-clojure ()
-  (use-package flycheck-clojure
-    :after 'flycheck))
+  '())
 
 (defun tothemax/post-init-clojure-mode ()
   (setq clojure-toplevel-inside-comment-form t)
@@ -73,10 +69,6 @@
                 (with-scopes 1)))))
 
 (defun tothemax/post-init-cider ()
-  (require 'flycheck-clojure)
-
-  (eval-after-load 'flycheck '(flycheck-clojure-setup))
-
   (setq cider-prompt-for-symbol nil
         cider-save-file-on-load t
         cider-font-lock-dynamically t
