@@ -28,8 +28,4 @@
 (setq-default evil-vsplit-window-right t
               evil-split-window-below t)
 
-(defun set-line-spacing ()
-  (setq-local default-text-properties '(line-spacing 0.3 line-height 1.3)))
-(add-hook 'text-mode-hook 'set-line-spacing)
-(add-hook 'prog-mode-hook 'set-line-spacing)
 (setq default-text-properties '(line-spacing 0.3 line-height 1.3))
