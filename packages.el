@@ -10,8 +10,8 @@
 ;;; License: GPLv3
 
 (setq tothemax-packages
-  '(clojure-mode
-    cider))
+      '(cider
+        clojure-mode))
 
 (defun tothemax/pre-init-clojure-mode ()
   (spacemacs|use-package-add-hook clojure-mode
@@ -72,7 +72,7 @@
                       (with-responses 0)
                       (with-scopes 1))))))))
 
-(defun tothemax/post-init-cider ()
+(defun tothemax/pre-init-cider ()
   (spacemacs|use-package-add-hook cider
     :post-config
     (progn
